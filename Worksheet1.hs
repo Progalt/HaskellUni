@@ -24,7 +24,7 @@ volumnOfCylinder h r = areaOfCircle r * h
 
 -- Question 5
 distance :: Float -> Float -> Float -> Float -> Float
-distance x1 y1 x2 y2 = sqrt ((y1 - y2) ^ 2 + (x1 - x2) ^ 2)
+distance x1 y1 x2 y2 = sqrt (y1 - y2) ^ 2 + (x1 - x2) ^ 2
 
 -- Question 6
 threeDifferent :: Int -> Int -> Int -> Bool
@@ -33,6 +33,8 @@ threeDifferent x y z = x /= y && x /= z && y /= z
 -- Question 7 
 divisibleBy :: Int -> Int -> Bool
 divisibleBy x y = x `mod` y == 0
+-- divisibleBy x y = mod x y == 0
+
 
 -- Question 8 
 isEven :: Int -> Bool
@@ -40,7 +42,7 @@ isEven x = divisibleBy x 2
 
 -- Question 9 
 averageThree :: Int -> Int -> Int -> Float
-averageThree x y z = fromIntegral (x + y + z) / 3.0
+averageThree x y z = fromIntegral (x + y + z) / 3
 
 -- Question 10
 absolute :: Int -> Int
