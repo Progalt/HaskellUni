@@ -40,7 +40,42 @@ taxiFare dist = 2.20 + first10 + after10
 
 -- Question 6
 howManyAboveAverage :: Int -> Int -> Int -> Int
-howManyAboveAverage x y z 
-    | x > avg && y > avg && z > avg = 3
-    where 
-        avg = fromIntegral (x + y + z) / 3
+howManyAboveAverage x y z = 0 
+
+-- Question 7
+validDate :: Int -> Int -> Bool
+validDate day month 
+    | day < 1 = False
+    |   month == 1 || month == 3 || 
+        month == 5 || month == 7 || 
+        month == 8 || month == 10 || 
+        month == 12 
+        && day <= 31 = True
+
+    |   month == 4 || month == 6 ||
+        month == 9 || month == 11 
+        && day <= 30 = True
+    
+    | month == 2 && day <= 28 = True
+    | otherwise = False
+
+-- Question 8 
+daysInMonth :: Int -> Int -> Int
+daysInMonth month year 
+    | month == 1 = 31
+    | month == 2 && isLeapYear = 29
+    | month == 2 = 28
+    | month == 3 = 31
+    | month == 4 = 30
+    | month == 5 = 31
+    | month == 6 = 30
+    | month == 7 = 31
+    | month == 8 = 31
+    | month == 9 = 30
+    | month == 10 = 31
+    | month == 11 = 30
+    | month == 12 = 31
+    | otherwise = 0 
+    where isLeapYear 
+            | year `mod` 4 == 0 = True
+            | otherwise = False
