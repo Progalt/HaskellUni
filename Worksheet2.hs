@@ -55,11 +55,17 @@ howManyAboveAverage x y z = aboveAvg
 -- Question 7
 validDate :: Int -> Int -> Bool
 validDate day month 
-    | day < 1 = False
-    | month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 = day <= 31
-    | month == 4 || month == 6 || month == 9 || month == 11 = day <= 30
-    | month == 2 && day <= 28 = True
-    | otherwise = False
+    | day < 1  || day > 31 || month < 1 || month > 12 = False
+    | month == 2 && day > 28 = False
+    | (month == 4 || month == 6 || month == 9 || month == 11) && day > 30 = False
+    | otherwise = True
+
+
+    --     False
+    -- | month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 = day <= 31
+    -- | month == 4 || month == 6 || month == 9 || month == 11 = day <= 30
+    -- | month == 2 && day <= 28 = True
+    -- | otherwise = False
 
 
 -- Question 8 
