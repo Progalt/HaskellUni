@@ -1,7 +1,7 @@
 -- We don't import '||' from the prelude, so that we can
 -- define our own version
 
-import Prelude hiding ((||), (&&))
+import Prelude hiding ((||), (&&), gcd)
 
 -- The following line declares the || operator (which we are about to
 -- re-define) to be right associative and to have precedence 2. This
@@ -47,13 +47,13 @@ divide n m
 
 -- Question 1
 
+infixr 3 &&
+
 (&&) :: Bool -> Bool -> Bool
 True && True = True
 True && False = False
 False && True = False
 False && False = False
-
-infixr 3 &&
 
 testAnd :: Bool
 -- testAnd = True && True
@@ -64,10 +64,8 @@ testAnd = False && False
 -- Question 2
 
 exOr :: Bool -> Bool -> Bool
-exOr False False = False
-exOr False True = True
-exOr True False = True
-exOr True True = False
+exOr False x = x
+exOr True x = not x
 
 -- Question 3
 
@@ -83,23 +81,66 @@ daysInMonth 4 = 30
 daysInMonth 6 = 30
 daysInMonth 9 = 30 
 daysInMonth 11 = 30
-daysInMonth n = 31
+daysInMonth _ = 31
 
 validDate :: Int -> Int -> Bool
 validDate day month = day <= daysInMonth month
 
+-- Rewritten for Question 11
+{-
 -- Question 5
+
+sumNumbers :: Int -> Int
+sumNumbers 0 = 0
+sumNumbers x = x + sumNumbers (x - 1)
+-- Question 6
+
+sumSquares :: Int -> Int
+sumSquares 0 = 0 
+sumSquares x = x * x + sumSquares (x - 1)
+
+-}
+
+-- Question 7 
+power :: Int -> Int -> Int
+power num 0 = 1
+power num pow = num * power num (pow - 1)
+
+-- Question 8 
+
+sumFromTo :: Int -> Int -> Int
+sumFromTo from to 
+  | to < from = 0
+  | from == to = from
+  | otherwise = from + sumFromTo (from + 1) to
+
+-- Question 9
+
+gcd :: Int -> Int -> Int
+gcd x y
+  | x == y = x
+  | x < y = gcd (y - x) x
+  | otherwise = gcd (x - y) y
+
+-- Question 10
+
+intSquareRoot :: Int -> Int
+intSquareRoot n = findRoot n n
+
+findRoot :: Int -> Int -> Int
+findRoot x y
+  | y * y <= x = y
+  | otherwise = findRoot x (y - 1)
+
+-- Question 11
 
 sumNumbers :: Int -> Int
 sumNumbers x
     | x > 0 = x + sumNumbers (x - 1)
     | otherwise = x
 
--- Question 6
-
 sumSquares :: Int -> Int
 sumSquares x
     | x > 0 =  x * x + sumSquares (x - 1)
     | otherwise = x 
 
--- Question 7 
