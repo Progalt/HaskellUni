@@ -70,8 +70,8 @@ exOr True x = not x
 -- Question 3
 
 ifThenElse :: Bool -> Int -> Int -> Int
-ifThenElse True x y = x
-ifThenElse False x y = y 
+ifThenElse True x _ = x
+ifThenElse _ _ y = y 
 
 -- Question 4
 
@@ -103,7 +103,7 @@ sumSquares x = x * x + sumSquares (x - 1)
 
 -- Question 7 
 power :: Int -> Int -> Int
-power num 0 = 1
+power _ 0 = 1
 power num pow = num * power num (pow - 1)
 
 -- Question 8 
