@@ -79,3 +79,26 @@ capMarks marks = [capMark y | y <- marks]
 
 -- Question 9 
 gradeStudents :: [StudentMark] -> [(String, Char)]
+gradeStudents marks = [(name, grade (name, mark)) | (name, mark) <- marks]
+
+-- Question 10
+duplicate :: String -> Int -> String
+duplicate str x
+    | x > 0 = str ++ duplicate str (x - 1)
+    | otherwise = ""
+
+duplicate' :: String -> Int -> String
+duplicate' str x = concat [str | _ <- [1 .. x]]
+
+-- Question 11
+divisors :: Int -> [Int]
+divisors x = [y | y <- [1 .. x], mod x y == 0]
+
+-- Question 12
+-- A prime number is divisible by 1 and itself
+-- so the length of the array from divisors is 2
+isPrime :: Int -> Bool
+isPrime x = length ( divisors x ) == 2
+
+-- Question 13
+split :: [(a,b)] -> ([a],[b])
