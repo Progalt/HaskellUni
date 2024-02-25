@@ -100,4 +100,4 @@ productSquareRoots' :: [Float] -> Float
 productSquareRoots' = foldr (\x acc -> if x > 0 then sqrt x * acc else acc) 1
 
 reverse' :: [a] -> [a]
-reverse' = foldr (\x acc -> acc ++ [x]) []
+reverse' = foldl (\acc x -> x : acc) []
